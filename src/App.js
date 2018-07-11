@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Logo from './assets/wikipedia.svg'
 
 import './App.css'
+import './animated.css'
 
 const div = React.createFactory('div')
 const element = React.createElement
@@ -75,9 +76,9 @@ class App extends Component {
   setUserInput(userInput){
     this.setState({userInput})
   }
-  getSearch(){
+  getSearch(word){
     
-    let input = this.state.userInput
+    let input = word
     input = input.replace(/\s+/g, '+')
     let titleUrl = wikiUrl + input
     const xhr = new XMLHttpRequest()
@@ -122,20 +123,21 @@ class App extends Component {
       parsed = JSON.parse(items)
     }
     this.setState({titles: parsed})
-    
   }
-  setResponseState(block1, block2, block3){
-    this.setState({titles: block1})
-    this.setState({desc: block2})
-    this.setState({links: block3})
-  }
+  // setResponseState(block1, block2, block3){
+  //   this.setState({titles: block1})
+  //   this.setState({desc: block2})
+  //   this.setState({links: block3})
+  // }
 
   getTitles(state){
+    let randAnim = ['bounceIn, fadeIn']
     if(state){
       return Object.keys(state).map(index => div(
         {
           style: Object.assign({}, styles.outputItem, {background: `rgba(119,136,153, 0.${index})`}),
-          key: index
+          key: index,
+          className: `animated ${randAnim[Math.floor(Math.random()*randAnim.length)]}`
         },
         state[index]
       ))    // console.log(state[index])
@@ -160,7 +162,7 @@ class App extends Component {
             style: styles.input, placeholder: 'search',
             onChange: (e)=> {
               this.setUserInput(e.target.value)
-              this.getSearch()
+              this.getSearch(e.target.value)
             },
             // onKeyPress: this.getSearch
           }),
