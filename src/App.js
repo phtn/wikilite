@@ -143,7 +143,7 @@ class App extends Component {
   // }
 
   getTitles(state){
-    let randAnim = ['pulse']
+    let randAnim = ['zoomIn']
     if(state){
       return Object.keys(state).map(index => div(
         {
