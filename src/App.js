@@ -12,7 +12,7 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: '-50px',
+    marginTop: '-75px',
     height: '100vh'
   },
   content: {
@@ -43,13 +43,15 @@ const styles = {
     padding: 5,
     fontFamily: 'Montserrat, sans-serif',
     fontWeight: 600,
+    border: 'none',
+    borderBottom: '1px solid gray'
 
   },
   output: {
     height: 300,
     width: 260,
     // border: '1px solid gray',
-    marginTop: 120,
+    marginTop: 100,
     // margin: 20
   },
   outputItem: {
@@ -58,6 +60,15 @@ const styles = {
     fontFamily: 'Montserrat, sans-serif',
     fontWeight: 400,
     borderRadius: 2
+  },
+  maxResults: {
+    fontFamily: 'Montserrat, sans-serif',
+    fontWeight: 600,
+    fontSize: 12,
+    backgroundColor: '#eee',
+    color: 'rgba(0,109,240, 0.5)',
+    borderRadius: 3,
+    padding: 5
   }
 }
 
@@ -65,13 +76,15 @@ const styles = {
 // Wikipedia callbacks
 const wikiUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&callback=parseResponse&search='
 // const contentUrl = 'https://en.wikipedia.org/w/api.php?action=query&%20Page&prop=revisions&rvprop=content&format=json&formatversion=2&titles='
+let parsedTitles, parsedDesc, parsedLinks
 
 class App extends Component {
   state={
     userInput: '',
     titles: [],
     desc: '',
-    links: ''
+    links: '',
+    titleCount: 0
   }
   setUserInput(userInput){
     this.setState({userInput})
@@ -119,7 +132,7 @@ class App extends Component {
         window.localStorage.setItem('links', block3)
       }
     }
-    let parsedTitles, parsedDesc, parsedLinks
+    
     if(localStorage.getItem('titles')){
       let titleItems = window.localStorage.getItem('titles')
       parsedTitles = JSON.parse(titleItems)
@@ -135,19 +148,29 @@ class App extends Component {
       parsedLinks = JSON.parse(linksItems)
     }
     this.setState({links: parsedLinks})
+
+    if (this.state.titles !== undefined && this.state.titles !== null ){
+      if(this.state.titles.length !== null && this.state.titles.length !== undefined){
+        this.setState({titleCount: this.state.titles.length})
+      }
+      
+    }
+    
   }
-  // setResponseState(block1, block2, block3){
-  //   this.setState({titles: block1})
-  //   this.setState({desc: block2})
-  //   this.setState({links: block3})
-  // }
+
+  checkUserInput(input){
+    if (input === ''){
+      localStorage.removeItem('titles', 'desc', 'links')
+      this.setState({titles: null})
+    }
+  }
 
   getTitles(state){
     let randAnim = ['zoomIn']
     if(state){
       return Object.keys(state).map(index => div(
         {
-          style: Object.assign({}, styles.outputItem, {background: `rgba(119,136,153, 0.${index})`, '-webkit-animation-delay': `0.${index}s`}),
+          style: Object.assign({}, styles.outputItem, {background: `rgba(119,136,153, 0.${index})`, WebkitAnimationDelay: `0.${index}s`}),
           key: index,
           className: `animated ${randAnim[Math.floor(Math.random()*randAnim.length)]}`
         },
@@ -158,6 +181,7 @@ class App extends Component {
   
   render() {
     // this.getTitles(this.state.titles)
+    console.log(this.state.titleCount)
     return (
       div({style: styles.container},
         div({style: styles.content},
@@ -175,13 +199,18 @@ class App extends Component {
             onChange: (e)=> {
               this.setUserInput(e.target.value)
               this.getSearch(e.target.value)
+              this.checkUserInput(e.target.value)
+              console.log(e.target.value)
             },
-            // onKeyPress: this.getSearch
+            autoFocus: true
           }),
           div({style: styles.output},
             div(null, 
               this.getTitles(this.state.titles)
-            )
+            ),
+            this.state.titleCount !== 0 && this.state.userInput !== '' ? div({style: styles.maxResults}, 
+              `Max results: ${this.state.titleCount}`
+            ) : null,
           )  
         ),
          
