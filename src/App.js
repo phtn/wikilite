@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Logo from './assets/wikipedia.svg'
 import Github from './assets/github.svg'
+import Twitter from './assets/twitter.svg'
 
 import './App.css'
 import './animated.css'
@@ -72,10 +73,15 @@ const styles = {
     padding: 5
   },
   github: {
-    position: 'absolute',
-    top: window.innerHeight - 25,
+    position: 'fixed',
+    top: window.innerHeight - 30,
     left: 10
-  }
+  },
+  twitter: {
+    position: 'fixed',
+    top: window.innerHeight - 30,
+    left: window.innerWidth - 30
+  },
 }
 
 
@@ -221,9 +227,13 @@ class App extends Component {
         ),
         div({style: styles.github},
           element('a', {href: 'https://github.com/phtn/wikilite'}, 
-            element('img', {src: Github, height: 20})
+            element('img', {src: Github, height: 20, style: {opacity: 0.7}})
           )
-          
+        ),
+        div({style: styles.twitter},
+          element('a', {href: 'https://twitter.com/phtn458'}, 
+            element('img', {src: Twitter, height: 20, style: {opacity: 0.7}})
+          )
         ) 
       )
     )
