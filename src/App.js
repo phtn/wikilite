@@ -111,18 +111,30 @@ class App extends Component {
       }
       if (res !== undefined){
         let block1 = firstArr.substr(firstComma+1)
+        let block2 = secondArr.substr(2, secondPosition-1)
+        let block3 = thirdArr.substr(2, thirdArr.length-4)
         // console.log(typeof block1)
         window.localStorage.setItem('titles', block1)
-        window.localStorage.setItem('desc', secondArr.substr(2, secondPosition-1))
-        window.localStorage.setItem('links', thirdArr.substr(2, thirdArr.length-4))
+        window.localStorage.setItem('desc', block2)
+        window.localStorage.setItem('links', block3)
       }
     }
-    let parsed
+    let parsedTitles, parsedDesc, parsedLinks
     if(localStorage.getItem('titles')){
-      let items = window.localStorage.getItem('titles')
-      parsed = JSON.parse(items)
+      let titleItems = window.localStorage.getItem('titles')
+      parsedTitles = JSON.parse(titleItems)
     }
-    this.setState({titles: parsed})
+    this.setState({titles: parsedTitles})
+    if(localStorage.getItem('desc')){
+      let descItems = window.localStorage.getItem('desc')
+      parsedDesc = JSON.parse(descItems)
+    }
+    this.setState({links: parsedDesc})
+    if(localStorage.getItem('links')){
+      let linksItems = window.localStorage.getItem('links')
+      parsedLinks = JSON.parse(linksItems)
+    }
+    this.setState({links: parsedLinks})
   }
   // setResponseState(block1, block2, block3){
   //   this.setState({titles: block1})
@@ -131,11 +143,11 @@ class App extends Component {
   // }
 
   getTitles(state){
-    let randAnim = ['bounceIn, fadeIn']
+    let randAnim = ['pulse']
     if(state){
       return Object.keys(state).map(index => div(
         {
-          style: Object.assign({}, styles.outputItem, {background: `rgba(119,136,153, 0.${index})`}),
+          style: Object.assign({}, styles.outputItem, {background: `rgba(119,136,153, 0.${index})`, '-webkit-animation-delay': `0.${index}s`}),
           key: index,
           className: `animated ${randAnim[Math.floor(Math.random()*randAnim.length)]}`
         },
