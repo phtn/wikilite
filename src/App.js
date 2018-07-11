@@ -53,7 +53,10 @@ const styles = {
   },
   outputItem: {
     margin: 10,
-    padding: 10
+    padding: 10,
+    fontFamily: 'Montserrat, sans-serif',
+    fontWeight: 400,
+    borderRadius: 2
   }
 }
 
