@@ -187,7 +187,7 @@ class App extends Component {
   
   render() {
     // this.getTitles(this.state.titles)
-    console.log(this.state.titleCount)
+    // console.log(this.state.titleCount)
     return (
       div({style: styles.container},
         div({style: styles.content},
@@ -206,7 +206,7 @@ class App extends Component {
               this.setUserInput(e.target.value)
               this.getSearch(e.target.value)
               this.checkUserInput(e.target.value)
-              console.log(e.target.value)
+              // console.log(e.target.value)
             },
             autoFocus: true
           }),
