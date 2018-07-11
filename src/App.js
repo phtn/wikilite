@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Logo from './assets/wikipedia.svg'
+import Github from './assets/github.svg'
 
 import './App.css'
 import './animated.css'
@@ -69,6 +70,11 @@ const styles = {
     color: 'rgba(0,109,240, 0.5)',
     borderRadius: 3,
     padding: 5
+  },
+  github: {
+    position: 'absolute',
+    top: window.innerHeight - 25,
+    left: 10
   }
 }
 
@@ -213,7 +219,12 @@ class App extends Component {
             ) : null,
           )  
         ),
-         
+        div({style: styles.github},
+          element('a', {href: 'https://github.com/phtn/wikilite'}, 
+            element('img', {src: Github, height: 20})
+          )
+          
+        ) 
       )
     )
   }
