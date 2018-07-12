@@ -206,7 +206,7 @@ const Main = observer (
             type: 'info',
             effect: 'solid',
             globalEventOff: 'click',
-            delayHide: 100,
+            // delayHide: 100,
             className: 'tooltip'
           },
             element('p', {style: styles.tipTitle}, title[index]),
