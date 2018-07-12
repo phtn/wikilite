@@ -18,9 +18,9 @@ console.log(appState.counter)
 const styles = {
   container: {
     display: 'flex',
-    alignItems: 'center',
+    // alignItems: 'center',
     justifyContent: 'center',
-    marginTop: '-75px',
+    // marginTop: '-75px',
     height: appState.height
   },
   content: {
@@ -209,6 +209,7 @@ const Main = observer (
             // delayHide: 100,
             className: 'tooltip'
           },
+            
             element('p', {style: styles.tipTitle}, title[index]),
             // element('br', {style: {padding: 2}}),
             element('p',null, appState.desc[index]),
@@ -237,7 +238,7 @@ const Main = observer (
       // console.log(this.state.titleCount)
       
       return (
-        div({style: styles.container},
+        div({style: Object.assign({}, styles.container, {marginTop: appState.height * 0.12}) },
           div({style: styles.content},
             div(null,
               element('img', {style: styles.logo, src: Logo}),
@@ -260,7 +261,7 @@ const Main = observer (
               autoFocus: true
             }),
 
-            appState.userInput === '' ? element(Hero,null) : null,
+            appState.userInput === '' ? element(Hero,{height: appState.height}) : null,
 
             div({style: styles.output},
               div(null, 
