@@ -67,7 +67,7 @@ const styles = {
     fontFamily: 'Montserrat, sans-serif',
     fontWeight: 400,
     borderRadius: 2,
-    zIndex: '-2'
+    // zIndex: '-2'
   },
   maxResults: {
     fontFamily: 'Montserrat, sans-serif',
@@ -205,7 +205,7 @@ const Main = observer (
             place: 'top',
             type: 'info',
             effect: 'solid',
-            globalEventOff: 'click',
+            // globalEventOff: 'click',
             // delayHide: 100,
             className: 'tooltip'
           },
