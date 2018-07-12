@@ -1,4 +1,6 @@
+import React from 'react'
 import { extendObservable } from 'mobx'
+import Hero from '../components/Hero'
 
 class AppState {
   constructor(){
@@ -12,32 +14,27 @@ class AppState {
       titles: [],
       desc: [],
       links: [],
-      getTitles(titles){
+      getTitles(titles, desc, links){
         if (titles && this.userInput !== ''){
           this.titles = JSON.parse(titles)
+          this.desc = JSON.parse(desc)
+          this.links = JSON.parse(links)
+
         } else if (this.userInput === ''){
           this.titles = []
         }
-        // console.log(this.titles)
       },
-      getDesc(desc){
-        if (desc && this.userInput !== ''){
-          this.desc = JSON.parse(desc)
-        } else if (this.userInput === ''){
-          this.desc = []
-        }
-        // console.log(this.desc)
+      height: window.innerHeight,
+      width: window.innerWidth,
+      resizeHeight(height){
+        this.height = height
       },
-      getLinks(links){
-        if (links && this.userInput !== ''){
-          this.links = JSON.parse(links)
-        } else if (this.userInput === ''){
-          this.links = []
-        }
-        // console.log(this.links)
+      resizeWidth(width){
+        this.width = width
+      },
+      showHero(userInput){
+        if(userInput === ''){ return <Hero/>}
       }
-      
-
 
     })
   }

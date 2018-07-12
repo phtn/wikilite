@@ -5,7 +5,7 @@ import Twitter from './assets/twitter.svg'
 import AppState from './observables'
 import { observer } from 'mobx-react'
 import ReactTooltip from 'react-tooltip'
-
+import Hero from './components/Hero'
 import './App.css'
 import './animated.css'
 
@@ -21,7 +21,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: '-75px',
-    height: '100vh'
+    height: appState.height
   },
   content: {
     textAlign: 'center'
@@ -80,13 +80,13 @@ const styles = {
   },
   github: {
     position: 'fixed',
-    top: window.innerHeight - 30,
+    
     left: 10
   },
   twitter: {
     position: 'fixed',
-    top: window.innerHeight - 30,
-    left: window.innerWidth - 30
+    
+    
   },
   tipTitle: {
     textTransform: 'uppercase',
@@ -152,9 +152,9 @@ const Main = observer (
           block2 = secondArr.substr(2, secondPosition-1)
           block3 = thirdArr.substr(2, thirdArr.length-4)
           // console.log(typeof block1)
-          appState.getTitles(block1)
-          appState.getDesc(block2)
-          appState.getLinks(block3)
+          appState.getTitles(block1, block2, block3)
+          // appState.getDesc(block2)
+          // appState.getLinks(block3)
           
           // window.localStorage.setItem('titles', block1)
           // window.localStorage.setItem('desc', block2)
@@ -219,7 +219,17 @@ const Main = observer (
     }
 
     componentDidMount(){
-      // appState.getTitles([])
+      window.addEventListener('resize', () => {
+        appState.resizeHeight(window.innerHeight)
+        appState.resizeWidth(window.innerWidth)
+      })
+    }
+
+    componentWillUnmount(){
+      window.removeEventListener('resize', () => {
+        appState.resizeHeight(window.innerHeight)
+        appState.resizeWidth(window.innerWidth)
+      })
     }
     
     render() {
@@ -236,7 +246,6 @@ const Main = observer (
                 element('span', null, '·'),
                 element('span', {style: styles.lite}, 'lite'),
               ))
-              
             ),
             element('input',{
               style: styles.input, placeholder: 'search',
@@ -250,6 +259,9 @@ const Main = observer (
               },
               autoFocus: true
             }),
+
+            appState.userInput === '' ? element(Hero,null) : null,
+
             div({style: styles.output},
               div(null, 
                 this.getTitles(appState.titles)
@@ -259,12 +271,12 @@ const Main = observer (
               ) : null,
             )  
           ),
-          div({style: styles.github},
+          div({style: Object.assign({}, styles.github, {top: appState.height - 30})},
             element('a', {href: 'https://github.com/phtn/wikilite'}, 
               element('img', {src: Github, height: 20, style: {opacity: 0.7}})
             )
           ),
-          div({style: styles.twitter},
+          div({style: Object.assign({}, styles.twitter, {top: appState.height - 30, left: appState.width - 30})},
             element('a', {href: 'https://twitter.com/phtn458'}, 
               element('img', {src: Twitter, height: 20, style: {opacity: 0.7}})
             )
