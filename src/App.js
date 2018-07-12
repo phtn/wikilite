@@ -4,6 +4,7 @@ import Github from './assets/github.svg'
 import Twitter from './assets/twitter.svg'
 import AppState from './observables'
 import { observer } from 'mobx-react'
+import ReactTooltip from 'react-tooltip'
 
 import './App.css'
 import './animated.css'
@@ -115,54 +116,44 @@ const Main = observer (
       let input = appState.userInput
       input = input.replace(/\s+/g, '+')
       let titleUrl = wikiUrl + input
+
       const xhr = new XMLHttpRequest()
       // xhr.overrideMimeType("application/json")
       xhr.open('GET', 'https://cors-anywhere.herokuapp.com/'+titleUrl, true )
       xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
       xhr.send(null)
-      
-      
   
-      xhr.onreadystatechange = function() {
+      xhr.onreadystatechange = async function() {
         if (xhr.readyState === 4) {
-          res = xhr.responseText
+          res = await xhr.responseText
           // console.log(res)
-          
-            firstComma = res.indexOf(',')
-            firstPosition = res.indexOf('],[', 0)
-            
-            // console.log(firstPosition)
-            firstArr = res.substr(0, firstPosition+1)
-            secondArr = res.substr(firstPosition)
-            secondPosition = secondArr.indexOf('],[', 2)
-            // console.log(secondPosition)
-  
-            thirdArr = secondArr.substr(secondPosition)
-            // console.log(firstArr.substr(firstComma+1))
-            // console.log(secondArr.substr(2, secondPosition-1))
-            // console.log(thirdArr.substr(2, thirdArr.length-4))
-            
+          firstComma = res.indexOf(',')
+          firstPosition = res.indexOf('],[', 0)
+          // console.log(firstPosition)
+          firstArr = res.substr(0, firstPosition+1)
+          secondArr = res.substr(firstPosition)
+          secondPosition = secondArr.indexOf('],[', 2)
+          // console.log(secondPosition)
+          thirdArr = secondArr.substr(secondPosition)
+          // console.log(firstArr.substr(firstComma+1))
+          // console.log(secondArr.substr(2, secondPosition-1))
+          // console.log(thirdArr.substr(2, thirdArr.length-4))
         }
 
         if (res !== undefined){
-
-          
-
-
           block1 = firstArr.substr(firstComma+1)
           block2 = secondArr.substr(2, secondPosition-1)
           block3 = thirdArr.substr(2, thirdArr.length-4)
           // console.log(typeof block1)
-          
           appState.getTitles(block1)
-
-          
-          
+          appState.getDesc(block2)
+          appState.getLinks(block3)
           
           // window.localStorage.setItem('titles', block1)
           // window.localStorage.setItem('desc', block2)
           // window.localStorage.setItem('links', block3)
         }
+        
       }
       
       // if(localStorage.getItem('titles')){
@@ -180,16 +171,12 @@ const Main = observer (
       //   parsedLinks = JSON.parse(linksItems)
       // }
       // this.setState({links: parsedLinks})
-  
       // if (this.state.titles !== undefined && this.state.titles !== null ){
       //   if(this.state.titles.length !== null && this.state.titles.length !== undefined){
       //     this.setState({titleCount: this.state.titles.length})
       //   }
-        
       // }
-      
     }
-  
   
     getTitles(state){
       let randAnim = ['zoomIn']
@@ -199,16 +186,31 @@ const Main = observer (
             style: Object.assign({}, styles.outputItem, {background: `rgba(119,136,153, 0.${index})`, WebkitAnimationDelay: `0.${index}s`}),
             key: index,
             className: `animated ${randAnim[Math.floor(Math.random()*randAnim.length)]}`,
-            id: 'outputItem'
+            id: 'outputItem',
+            "data-tip": true,
+            "data-for": `id-${index}`,
+            // onClick: ()=> console.log(appState.desc[index])
           },
-          state[index]
-        ))    // console.log(state[index])
+          state[index],
+          element(ReactTooltip, {
+            id: `id-${index}`,
+            place: 'top',
+            type: 'info',
+            effect: 'solid',
+            className: 'tooltip'
+          }, appState.desc[index])
+        ))
       }
+    }
+
+    componentDidMount(){
+      // appState.getTitles([])
     }
     
     render() {
       // this.getTitles(this.state.titles)
       // console.log(this.state.titleCount)
+      
       return (
         div({style: styles.container},
           div({style: styles.content},

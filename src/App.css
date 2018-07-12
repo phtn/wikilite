@@ -10,3 +10,7 @@ div#outputItem:hover {
   cursor: pointer;
   font-weight: 600 !important;
 }
+.tooltip {
+  width: 200px;
+  font-weight: 400;
+}
