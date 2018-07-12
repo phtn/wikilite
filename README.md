@@ -1,12 +1,18 @@
 # wiki·lite
 
-## Introduction
+## About
 
-> Wiki·lite is a lightweight Wikipedia crawler usingthe Mediawiki API.
+> Wiki·lite is a lightweight Wikipedia crawler using Mediawiki API.
 
-## Framework
+## Built with
 
-> This is a an example of a SPA built on create-react-app and deployed on heroku.
+> create-react-app
+
+> Framework: React 16.4.1 
+
+> State Management: mobx 5.0.3 mobx-react 5.2.3
+
+> Deployment: Heroku
 
 ## Links
 

@@ -2,3 +2,11 @@
   color: #778899;
   font-weight: 400;
 }
+::-webkit-scrollbar { 
+  display: none;
+}
+div#outputItem:hover {
+  border-color: rgba(0,109,240, 1) !important;
+  cursor: pointer;
+  font-weight: 600 !important;
+}
