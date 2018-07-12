@@ -14,7 +14,7 @@ const styles = {
     height: 300,
     width: 260,
     position: 'absolute',
-    top: 200,
+    top: 220,
     borderRadius: 10,
     backgroundImage: 'linear-gradient(to left, rgba(178,254,250, 0.5), rgba(14,210,247, 0.3))',
     paddingTop: 50
