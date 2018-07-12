@@ -66,7 +66,8 @@ const styles = {
     padding: 10,
     fontFamily: 'Montserrat, sans-serif',
     fontWeight: 400,
-    borderRadius: 2
+    borderRadius: 2,
+    zIndex: '-2'
   },
   maxResults: {
     fontFamily: 'Montserrat, sans-serif',
@@ -87,6 +88,12 @@ const styles = {
     top: window.innerHeight - 30,
     left: window.innerWidth - 30
   },
+  tipTitle: {
+    textTransform: 'uppercase',
+    fontSize: 10,
+    fontWeight: 600,
+    letterSpacing: 1
+  }
 }
 
 
@@ -178,27 +185,35 @@ const Main = observer (
       // }
     }
   
-    getTitles(state){
+    getTitles(title){
       let randAnim = ['zoomIn']
-      if(state){
-        return Object.keys(state).map(index => div(
+      if(title){
+        return Object.keys(title).map(index => div(
           {
             style: Object.assign({}, styles.outputItem, {background: `rgba(119,136,153, 0.${index})`, WebkitAnimationDelay: `0.${index}s`}),
             key: index,
             className: `animated ${randAnim[Math.floor(Math.random()*randAnim.length)]}`,
             id: 'outputItem',
             "data-tip": true,
+            // "data-event": "click focus",
             "data-for": `id-${index}`,
             // onClick: ()=> console.log(appState.desc[index])
           },
-          state[index],
+          title[index],
           element(ReactTooltip, {
             id: `id-${index}`,
             place: 'top',
             type: 'info',
             effect: 'solid',
+            globalEventOff: 'click',
+            delayHide: 100,
             className: 'tooltip'
-          }, appState.desc[index])
+          },
+            element('p', {style: styles.tipTitle}, title[index]),
+            // element('br', {style: {padding: 2}}),
+            element('p',null, appState.desc[index]),
+          
+          )
         ))
       }
     }
