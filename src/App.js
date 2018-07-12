@@ -258,7 +258,7 @@ const Main = observer (
                 // console.log(e.target.value)
                 
               },
-              autoFocus: true
+              // autoFocus: true
             }),
 
             appState.userInput === '' ? element(Hero,{height: appState.height}) : null,
