@@ -30,7 +30,8 @@ const styles = {
     height: 30,
     float: 'left',
     marginRight: 20,
-    opacity: 0.5
+    opacity: 0.5,
+    WebkitAnimationDelay: '2.0s'
   },
   title: {
     float: 'left',
@@ -244,7 +245,11 @@ const Main = observer (
         div({style: Object.assign({}, styles.container, {marginTop: appState.height * 0.12}) },
           div({style: styles.content},
             div(null,
-              element('img', {style: styles.logo, src: Logo}),
+              element('img', {
+                style: styles.logo, src: Logo,
+                className: 'animated pulse'
+                }
+              ),
               element('h1',{style: styles.title}, element('span',null,
                 element('span', null, 'wiki'),
                 element('span', null, '·'),
@@ -275,7 +280,7 @@ const Main = observer (
             )  
           ),
           div({
-            style: Object.assign({}, styles.github, {top: appState.height - 30, WebkitAnimationDelay: '0.5s'}),
+            style: Object.assign({}, styles.github, {top: appState.height - 30, WebkitAnimationDelay: '1s'}),
             className: 'animated rollIn'
             },
             element('a', {href: 'https://github.com/phtn/wikilite'}, 
@@ -283,7 +288,7 @@ const Main = observer (
             )
           ),
           div({
-            style: Object.assign({}, styles.twitter, {top: appState.height - 30, left: appState.width - 30, WebkitAnimationDelay: '1s'}),
+            style: Object.assign({}, styles.twitter, {top: appState.height - 30, left: appState.width - 30, WebkitAnimationDelay: '1.5s'}),
             className: 'animated rollIn',
             },
             element('a', {href: 'https://twitter.com/phtn458'}, 
