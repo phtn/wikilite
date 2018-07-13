@@ -1,42 +1,34 @@
-import React from 'react'
-import { extendObservable } from 'mobx'
-import Hero from '../components/Hero'
+import { extendObservable } from "mobx";
 
 class AppState {
-  constructor(){
+  constructor() {
     extendObservable(this, {
-      counter: 'counter from mobx observable',
-      userInput: '',
-      getUserInput(input){
-        this.userInput = input
-        // console.log(this.userInput)
+      counter: "counter from mobx observable",
+      userInput: "",
+      getUserInput(input) {
+        this.userInput = input;
       },
       titles: [],
       desc: [],
       links: [],
-      getTitles(titles, desc, links){
-        if (titles && this.userInput !== ''){
-          this.titles = JSON.parse(titles)
-          this.desc = JSON.parse(desc)
-          this.links = JSON.parse(links)
-
-        } else if (this.userInput === ''){
-          this.titles = []
+      getTitles(titles, desc, links) {
+        if (titles && this.userInput !== "") {
+          this.titles = JSON.parse(titles);
+          this.desc = JSON.parse(desc);
+          this.links = JSON.parse(links);
+        } else if (this.userInput === "") {
+          this.titles = [];
         }
       },
       height: window.innerHeight,
       width: window.innerWidth,
-      resizeHeight(height){
-        this.height = height
+      resizeHeight(height) {
+        this.height = height;
       },
-      resizeWidth(width){
-        this.width = width
-      },
-      showHero(userInput){
-        if(userInput === ''){ return <Hero/>}
+      resizeWidth(width) {
+        this.width = width;
       }
-
-    })
+    });
   }
 }
-export default AppState
+export default AppState;
