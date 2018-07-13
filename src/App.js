@@ -194,9 +194,12 @@ const Main = observer (
             key: index,
             className: `animated ${randAnim[Math.floor(Math.random()*randAnim.length)]}`,
             id: 'outputItem',
-            "data-tip": true,
-            // "data-event": "click",
+            "data-tip": 'tooltip',
+            "data-event": "click",
+            "data-event-off": " mouseout",
             "data-for": `id-${index}`,
+            // ref: `id-${index}`,
+            // onClick: (e) => e.target.focus()
             // onClick: ()=> console.log(appState.desc[index])
           },
           title[index],
@@ -205,7 +208,7 @@ const Main = observer (
             place: 'top',
             type: 'info',
             effect: 'solid',
-            // globalEventOff: 'focus',
+            // globalEventOff: 'blur',
             // delayHide: 200,
             className: 'tooltip'
           },
@@ -273,7 +276,7 @@ const Main = observer (
           ),
           div({
             style: Object.assign({}, styles.github, {top: appState.height - 30, WebkitAnimationDelay: '0.5s'}),
-            className: 'animated fadeIn'
+            className: 'animated rollIn'
             },
             element('a', {href: 'https://github.com/phtn/wikilite'}, 
               element('img', {src: Github, height: 20, style: {opacity: 0.7}})
@@ -281,7 +284,7 @@ const Main = observer (
           ),
           div({
             style: Object.assign({}, styles.twitter, {top: appState.height - 30, left: appState.width - 30, WebkitAnimationDelay: '1s'}),
-            className: 'animated fadeIn',
+            className: 'animated rollIn',
             },
             element('a', {href: 'https://twitter.com/phtn458'}, 
               element('img', {src: Twitter, height: 20, style: {opacity: 0.7}})
