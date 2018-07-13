@@ -195,7 +195,7 @@ const Main = observer (
             className: `animated ${randAnim[Math.floor(Math.random()*randAnim.length)]}`,
             id: 'outputItem',
             "data-tip": true,
-            // "data-event": "click focus",
+            // "data-event": "click",
             "data-for": `id-${index}`,
             // onClick: ()=> console.log(appState.desc[index])
           },
@@ -205,8 +205,8 @@ const Main = observer (
             place: 'top',
             type: 'info',
             effect: 'solid',
-            // globalEventOff: 'click',
-            // delayHide: 100,
+            // globalEventOff: 'focus',
+            // delayHide: 200,
             className: 'tooltip'
           },
             
@@ -256,7 +256,6 @@ const Main = observer (
                 
                 appState.getUserInput(e.target.value)
                 // console.log(e.target.value)
-                
               },
               // autoFocus: true
             }),
@@ -272,12 +271,18 @@ const Main = observer (
               ) : null,
             )  
           ),
-          div({style: Object.assign({}, styles.github, {top: appState.height - 30})},
+          div({
+            style: Object.assign({}, styles.github, {top: appState.height - 30, WebkitAnimationDelay: '0.5s'}),
+            className: 'animated fadeIn'
+            },
             element('a', {href: 'https://github.com/phtn/wikilite'}, 
               element('img', {src: Github, height: 20, style: {opacity: 0.7}})
             )
           ),
-          div({style: Object.assign({}, styles.twitter, {top: appState.height - 30, left: appState.width - 30})},
+          div({
+            style: Object.assign({}, styles.twitter, {top: appState.height - 30, left: appState.width - 30, WebkitAnimationDelay: '1s'}),
+            className: 'animated fadeIn',
+            },
             element('a', {href: 'https://twitter.com/phtn458'}, 
               element('img', {src: Twitter, height: 20, style: {opacity: 0.7}})
             )
