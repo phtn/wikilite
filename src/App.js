@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Logo from "./assets/wikipedia.svg";
 import Github from "./assets/github.svg";
 import Twitter from "./assets/twitter.svg";
 import Copy from "./assets/copy.svg";
@@ -72,8 +71,8 @@ const Main = observer(
               "data-tip": true,
               "data-event": "click",
               "data-event-off": "mouseout",
-              "data-for": `id-${index}`,
-              
+              "data-for": `id-${index}`
+
               // ref: `ref${index}`,
               // onClick: ()=> {
               //   ReactTooltip.hide(!this.ref)
@@ -94,22 +93,39 @@ const Main = observer(
               },
               element("p", { style: styles.tipTitle }, title[index]),
               element("p", null, appState.desc[index]),
-              div({style: styles.actionDiv},
-                element('button', {style: styles.copyButton, className: 'copy-button', onMouseDown: () => {
-                  appState.copy(appState.titles[index],appState.desc[index],appState.links[index])
-                  appState.pulseLogo()
-                }}, 
-                  element('img', {style: styles.actionIcon, src: Copy}),
-                  element('p', {style: styles.actionLabel}, 'copy'),
+              div(
+                { style: styles.actionDiv },
+                element(
+                  "button",
+                  {
+                    style: styles.copyButton,
+                    className: "copy-button",
+                    onMouseDown: () => {
+                      appState.copy(
+                        appState.titles[index],
+                        appState.desc[index],
+                        appState.links[index]
+                      );
+                      appState.pulseLogo();
+                    }
+                  },
+                  element("img", { style: styles.actionIcon, src: Copy }),
+                  element("p", { style: styles.actionLabel }, "copy")
                 ),
-                element('a', {style: {textDecoration: 'none'}, href: appState.links[index]},
-                  element('button', {style: styles.moreButton, className: 'more-button'}, 
-                    element('img', {style: styles.actionIcon, src: Link}),
-                    element('p', {style: styles.actionLabel}, 'more'),
+                element(
+                  "a",
+                  {
+                    style: { textDecoration: "none" },
+                    href: appState.links[index]
+                  },
+                  element(
+                    "button",
+                    { style: styles.moreButton, className: "more-button" },
+                    element("img", { style: styles.actionIcon, src: Link }),
+                    element("p", { style: styles.actionLabel }, "more")
                   )
-                ),
+                )
               )
-
             )
           )
         );

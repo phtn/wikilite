@@ -2,11 +2,11 @@
   color: #778899;
   font-weight: 400;
 }
-::-webkit-scrollbar { 
+::-webkit-scrollbar {
   display: none;
 }
 div#outputItem:hover {
-  border-color: rgba(0,109,240, 1) !important;
+  border-color: rgba(0, 109, 240, 1) !important;
   cursor: pointer !important;
   font-weight: 600 !important;
 }
@@ -20,19 +20,19 @@ div#outputItem:hover {
 .copy-button {
   pointer-events: auto !important;
 }
-.copy-button:hover{
-  background-color: rgba(254,254,254, 1) !important;
+.copy-button:hover {
+  background-color: rgba(254, 254, 254, 1) !important;
   /* background-color: black !important; */
-  color: rgba(0,109,240, 1) !important;
+  color: rgba(0, 109, 240, 1) !important;
 }
 .copy-button:hover > p {
-  color: rgba(0,109,240, 1) !important;
+  color: rgba(0, 109, 240, 1) !important;
 }
-.more-button:hover{
-  background-color: rgba(254,254,254, 1) !important;
+.more-button:hover {
+  background-color: rgba(254, 254, 254, 1) !important;
   /* background-color: black !important; */
-  color: rgba(0,109,240, 1) !important;
+  color: rgba(0, 109, 240, 1) !important;
 }
 .more-button:hover > p {
-  color: rgba(0,109,240, 1) !important;
+  color: rgba(0, 109, 240, 1) !important;
 }
