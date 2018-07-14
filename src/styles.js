@@ -69,6 +69,51 @@ const styles = {
     fontSize: 10,
     fontWeight: 600,
     letterSpacing: 1
+  },
+  actionDiv: {
+    height: 40,
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    padding: 5
+  },
+  copyButton: {
+    backgroundColor: "rgba(254,254,254, 0.5)",
+    height: 25,
+    width: "auto",
+    border: "none",
+    borderRadius: 2,
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    textAlign: "center"
+  },
+  moreButton: {
+    backgroundColor: "rgba(254,254,254, 0.5)",
+    height: 25,
+    width: "auto",
+    border: "none",
+    borderRadius: 2,
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    textAlign: "center",
+    marginLeft: 55
+  },
+  actionIcon: {
+    height: 15,
+    float: "left",
+    margin: 5
+  },
+  actionLabel: {
+    textTransform: "uppercase",
+    fontFamily: "Montserrat, sans-serif",
+    fontWeight: 600,
+    fontSize: 10,
+    color: "#eee",
+    letterSpacing: 1,
+    float: "left",
+    margin: 5
   }
 };
 export default styles;

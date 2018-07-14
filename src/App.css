@@ -15,5 +15,24 @@ div#outputItem:hover {
   font-weight: 400;
   /* background-color: rgba(51,122,183, 1.2) !important; */
   opacity: 1 !important;
-  
+  pointer-events: auto !important;
+}
+.copy-button {
+  pointer-events: auto !important;
+}
+.copy-button:hover{
+  background-color: rgba(254,254,254, 1) !important;
+  /* background-color: black !important; */
+  color: rgba(0,109,240, 1) !important;
+}
+.copy-button:hover > p {
+  color: rgba(0,109,240, 1) !important;
+}
+.more-button:hover{
+  background-color: rgba(254,254,254, 1) !important;
+  /* background-color: black !important; */
+  color: rgba(0,109,240, 1) !important;
+}
+.more-button:hover > p {
+  color: rgba(0,109,240, 1) !important;
 }

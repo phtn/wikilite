@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Logo from "./assets/wikipedia.svg";
 import Github from "./assets/github.svg";
 import Twitter from "./assets/twitter.svg";
+import Copy from "./assets/copy.svg";
+import Link from "./assets/link.svg";
 import AppState from "./observables";
 import { observer } from "mobx-react";
 import ReactTooltip from "react-tooltip";
@@ -67,10 +69,16 @@ const Main = observer(
               key: index,
               id: "outputItem",
               className: "animated zoomIn",
-              "data-tip": "tooltip",
+              "data-tip": true,
               "data-event": "click",
               "data-event-off": "mouseout",
-              "data-for": `id-${index}`
+              "data-for": `id-${index}`,
+              
+              // ref: `ref${index}`,
+              // onClick: ()=> {
+              //   ReactTooltip.hide(!this.ref)
+              //   ReactTooltip.show(this.ref)
+              // }
             },
             title[index],
             element(
@@ -80,10 +88,25 @@ const Main = observer(
                 place: "top",
                 type: "info",
                 effect: "solid",
+                delayHide: 2000,
+                globalEventOff: "click",
                 className: "tooltip"
               },
               element("p", { style: styles.tipTitle }, title[index]),
-              element("p", null, appState.desc[index])
+              element("p", null, appState.desc[index]),
+              div({style: styles.actionDiv},
+                element('button', {style: styles.copyButton, className: 'copy-button', onMouseDown: () => appState.copy(appState.titles[index],appState.desc[index],appState.links[index])}, 
+                  element('img', {style: styles.actionIcon, src: Copy}),
+                  element('p', {style: styles.actionLabel}, 'copy'),
+                ),
+                element('a', {style: {textDecoration: 'none'}, href: appState.links[index]},
+                  element('button', {style: styles.moreButton, className: 'more-button'}, 
+                    element('img', {style: styles.actionIcon, src: Link}),
+                    element('p', {style: styles.actionLabel}, 'more'),
+                  )
+                ),
+              )
+
             )
           )
         );
