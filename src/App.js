@@ -88,14 +88,17 @@ const Main = observer(
                 place: "top",
                 type: "info",
                 effect: "solid",
-                delayHide: 2000,
+                delayHide: 1500,
                 globalEventOff: "click",
                 className: "tooltip"
               },
               element("p", { style: styles.tipTitle }, title[index]),
               element("p", null, appState.desc[index]),
               div({style: styles.actionDiv},
-                element('button', {style: styles.copyButton, className: 'copy-button', onMouseDown: () => appState.copy(appState.titles[index],appState.desc[index],appState.links[index])}, 
+                element('button', {style: styles.copyButton, className: 'copy-button', onMouseDown: () => {
+                  appState.copy(appState.titles[index],appState.desc[index],appState.links[index])
+                  appState.pulseLogo()
+                }}, 
                   element('img', {style: styles.actionIcon, src: Copy}),
                   element('p', {style: styles.actionLabel}, 'copy'),
                 ),
@@ -138,8 +141,8 @@ const Main = observer(
             null,
             element("img", {
               style: styles.logo,
-              src: Logo,
-              className: "animated pulse"
+              src: appState.logo,
+              className: appState.logoAnimate
             }), // LOGO
             element(
               "h1",

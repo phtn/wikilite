@@ -1,9 +1,12 @@
 import { extendObservable } from "mobx";
+import Logo from '../assets/wikipedia.svg'
+import Copy from '../assets/blue-copy.svg'
 
 class AppState {
   constructor() {
     extendObservable(this, {
-      counter: "counter from mobx observable",
+      logo: Logo,
+      logoAnimate: "animated pulse",
       userInput: "",
       getUserInput(input) {
         this.userInput = input;
@@ -30,12 +33,12 @@ class AppState {
       },
       copy(title, desc, link){
         let str = `
-        ${title}
+${title}
         
-        ${desc}
+${desc}
 
-        ${link}
-        `
+${link}
+`
         function copyToClipboard(text){
           let textArea = document.createElement('textarea')
           textArea.style.position = 'fixed';
@@ -63,6 +66,19 @@ class AppState {
           document.body.removeChild(textArea);
         }
         copyToClipboard(str)
+      },
+      pulseLogo(){
+        this.logoAnimate = "animated zoomOut"
+        
+        setTimeout(()=> {
+          this.logoAnimate = "animated zoomIn"
+          this.logo = Copy
+        }, 500)
+        
+        setTimeout(()=> {
+          "animated pulse"
+          this.logo = Logo
+        }, 2500)
       }
       
     });

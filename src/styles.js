@@ -11,7 +11,7 @@ const styles = {
     float: "left",
     marginRight: 20,
     opacity: 0.5,
-    WebkitAnimationDelay: "2.0s"
+    // WebkitAnimationDelay: "2.0s"
   },
   title: {
     float: "left",
