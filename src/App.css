@@ -36,3 +36,9 @@ div#outputItem:hover {
 .more-button:hover > p {
   color: rgba(0, 109, 240, 1) !important;
 }
+.rank-one {
+  width: 230px !important;
+  font-weight: 400;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}

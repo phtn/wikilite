@@ -49,12 +49,13 @@ const styles = {
     fontFamily: "Montserrat, sans-serif",
     fontWeight: 600,
     fontSize: 10,
-    backgroundColor: "#eee",
+    backgroundColor: "#ccc",
     color: "rgba(0,109,240, 0.5)",
     borderRadius: 3,
     padding: 5,
     textTransform: "uppercase",
-    letterSpacing: 1
+    letterSpacing: 1,
+    marginTop: 5
   },
   github: {
     position: "fixed",
@@ -113,6 +114,24 @@ const styles = {
     letterSpacing: 1,
     float: "left",
     margin: 5
+  },
+  rankOne: {
+    height: 'auto',
+    border: '0px solid gray',
+    borderRadius: 3,
+    backgroundColor: '#eee',
+    fontFamily: "Montserrat, sans-serif",
+    fontWeight: 600,
+    fontSize: 11,
+    color: "rgba(0,109,240, 0.5)",
+    padding: 5,
+  },
+  rankOneTitle: {
+    fontSize: 16
+  },
+  rankOneDesc: {
+    fontWeight: 400,
+    color: '#666'
   }
 };
 export default styles;

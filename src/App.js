@@ -57,6 +57,7 @@ const Main = observer(
       };
     }
     getTitles(title) {
+
       if (title) {
         return Object.keys(title).map(index =>
           div(
@@ -72,14 +73,10 @@ const Main = observer(
               "data-event": "click",
               "data-event-off": "mouseout",
               "data-for": `id-${index}`
-
-              // ref: `ref${index}`,
-              // onClick: ()=> {
-              //   ReactTooltip.hide(!this.ref)
-              //   ReactTooltip.show(this.ref)
-              // }
+            
             },
             title[index],
+            
             element(
               ReactTooltip,
               {
@@ -145,7 +142,8 @@ const Main = observer(
     }
     render() {
       return div(
-        {
+        { 
+          className: 'main-div',
           style: Object.assign({}, styles.container, {
             height: appState.height,
             marginTop: appState.height * 0.12
@@ -179,21 +177,30 @@ const Main = observer(
             onChange: e => {
               this.getSearch();
               appState.getUserInput(e.target.value);
-            }
-            // autoFocus: true
+            },
+            autoFocus: true
           }),
+          
           appState.userInput === ""
             ? element(Hero, { height: appState.height })
             : null, // HERO
+            
+            
           div(
             { style: styles.output },
-            div(null, this.getTitles(appState.titles)), // OUTPUT
+            appState.userInput !== "" ? div(
+              { style: styles.rankOne },
+              element('p', {style: styles.rankOneTitle}, appState.titles[0]),
+              element('p', {style: styles.rankOneDesc}, appState.desc[0]),
+            ) : null,
             appState.titles.length !== 0 && appState.userInput !== ""
               ? div(
                   { style: styles.maxResults },
                   `Max results: ${appState.titles.length}`
                 )
-              : null
+              : null,
+            div(null, this.getTitles(appState.titles)), // OUTPUT
+            
           )
         ),
         div(
