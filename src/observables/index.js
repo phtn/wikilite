@@ -38,6 +38,10 @@ class AppState {
       resizeWidth(width) {
         this.width = width;
       },
+      inputTop: 0,
+      setInputTop(top){
+        this.inputTop = top
+      },
       copy(title, desc, link) {
         let str = `
 ${title}

@@ -31,6 +31,7 @@ let block1, block2, block3;
 
 const Main = observer(
   class App extends Component {
+
     getSearch() {
       let input = appState.userInput;
       input = input.replace(/\s+/g, "+");
@@ -58,9 +59,6 @@ const Main = observer(
       };
     }
     getTitles(title) {
-
-      
-
       if (title) {
         return Object.keys(title).map(index =>
           div(
@@ -76,10 +74,8 @@ const Main = observer(
               "data-event": "click",
               "data-event-off": "mouseout",
               "data-for": `id-${index}`
-            
             },
             title[index],
-            
             element(
               ReactTooltip,
               {
@@ -136,6 +132,10 @@ const Main = observer(
         appState.resizeHeight(window.innerHeight);
         appState.resizeWidth(window.innerWidth);
       });
+      let searchInput = document.getElementById('search-input')
+      let rect = searchInput.getBoundingClientRect()
+      console.log(rect)
+      appState.setInputTop(rect.top)
     }
     componentWillUnmount() {
       window.removeEventListener("resize", () => {
@@ -183,7 +183,8 @@ const Main = observer(
               console.log(appState.titles)
               this.getSearch();
             },
-            autoFocus: true
+            autoFocus: true,
+            id: 'search-input'
           }),
           
           appState.userInput === ""
@@ -197,7 +198,7 @@ const Main = observer(
               { style: styles.rankOne },
               element('p', {style: styles.rankOneTitle}, appState.titles[0]),
               element('p', {style: styles.rankOneDesc}, appState.desc[0]),
-            ) : element(Loader, {height: appState.height, width: appState.width}) : null,
+            ) : element(Loader, {top: appState.inputTop, width: appState.width}) : null,
             appState.titles.length !== 0 && appState.userInput !== ""
               ? div(
                   { style: styles.maxResults },
