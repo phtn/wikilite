@@ -4,13 +4,13 @@ import mojs from 'mo-js'
 const photons = (top, width) => {
 	new mojs.Shape({
 		  shape:        'circle',
-		  points: 			 6,
+		  points: 			 1,
 		  scale:         { 0 : .2 },
 		  top: 					 top,
 		  left: 				 width,
 		  fill: 				 'none',
 		  stroke: 			 {'#006DF0': '#006DF0', easing: 'cubic.out'},
-		  strokeWidth:   { 5: 0 },
+		  strokeWidth:   { 15: 0 },
 		  strokeDasharray: '100%',
 		  strokeDashoffset: { '-100%' : '100%' },
 		  duration:      2000,
@@ -24,13 +24,13 @@ const photons = (top, width) => {
 		  scale:         { 0 : .2 },
 		  top: 					 top,
 		  left: 				 width,
-		  fill: 				 'none',
+		  fill: 				 {'#006DF0': 'none'},
 		  stroke: 			 {'#666': '#666', easing: 'cubic.out'},
 		  strokeWidth:   { 5: 0 },
 		  strokeDasharray: '100%',
 		  strokeDashoffset: { '-100%' : '100%' },
-		  duration:      1000,
-		  angle:        { 0: 450 },
+		  duration:      1500,
+		  angle:        { 450: 0 },
 		  easing:        'cubic.out',
 		  repeat: 			1
 		}).play()
