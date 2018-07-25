@@ -12,15 +12,15 @@ const photons = (top, width) => {
 		  strokeWidth:   { 10: 0 },
 		  strokeDasharray: '100%',
 		  strokeDashoffset: { '-100%' : '250%' },
-		  duration:      4000,
+		  duration:      2000,
 		  angle:        { 0: 360 },
 		  easing:        'cubic.out',
-		  repeat: 			1
+		  // repeat: 			1
 		}).play()
 
 	new mojs.Shape({
 		  shape:        'polygon',
-      scale:         { 0 : .1 },
+      scale:         { 0 : .15 },
 		  points: 			 6,
 		  top: 					 top,
 		  left: 				 width,
@@ -29,7 +29,7 @@ const photons = (top, width) => {
 		  strokeWidth:   { 5: 0 },
 		  strokeDasharray: '100%',
 		  strokeDashoffset: { '-100%' : '100%' },
-		  duration:      2500,
+		  duration:      1500,
 		  angle:        { 180: 0 },
 		  easing:        'cubic.out',
 		  repeat: 			1
