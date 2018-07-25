@@ -132,6 +132,13 @@ const styles = {
   rankOneDesc: {
     fontWeight: 400,
     color: '#666'
+  },
+  medal: {
+    position: 'relative',
+    top: 0,
+    left: 5,
+    height: 30,
+    float: 'right',
   }
 };
 export default styles;

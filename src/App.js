@@ -3,6 +3,7 @@ import Github from "./assets/github.svg";
 import Twitter from "./assets/twitter.svg";
 import Copy from "./assets/copy.svg";
 import Link from "./assets/link.svg";
+import Medal from './assets/medal_2.svg'
 import AppState from "./observables";
 import { observer } from "mobx-react";
 import ReactTooltip from "react-tooltip";
@@ -196,6 +197,7 @@ const Main = observer(
             { style: styles.output },
             appState.userInput !== "" ? appState.desc.length === 10 ? div(
               { style: styles.rankOne },
+              element('img', {style: styles.medal, src: Medal}),
               element('p', {style: styles.rankOneTitle, className: 'animated fadeInUp'}, appState.titles[0]),
               element('p', {style: styles.rankOneDesc, className: 'animated fadeInUp'}, appState.desc[0]),
             ) : element(Loader, {top: appState.inputTop, width: appState.width}) : null,
