@@ -4,7 +4,7 @@ const element = React.createElement;
 
 const styles = {
   container: {
-    height: 300,
+    height: 280,
     width: 260,
     position: "absolute",
     borderRadius: 10,

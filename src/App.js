@@ -134,7 +134,7 @@ const Main = observer(
       });
       let searchInput = document.getElementById('search-input')
       let rect = searchInput.getBoundingClientRect()
-      console.log(rect)
+      // console.log(rect)
       appState.setInputTop(rect.top)
     }
     componentWillUnmount() {
@@ -180,7 +180,7 @@ const Main = observer(
             onChange: e => {
               appState.getUserInput(e.target.value);
               appState.resetAllData(appState.userInput)
-              console.log(appState.titles)
+              // console.log(appState.titles)
               this.getSearch();
             },
             autoFocus: true,

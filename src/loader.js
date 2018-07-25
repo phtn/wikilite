@@ -4,16 +4,15 @@ import mojs from 'mo-js'
 const photons = (top, width) => {
 	new mojs.Shape({
 		  shape:        'circle',
-		  points: 			 1,
-		  scale:         { 0 : .2 },
+		  scale:         { 0.2 : 0.2 },
 		  top: 					 top,
 		  left: 				 width,
 		  fill: 				 'none',
-		  stroke: 			 {'#006DF0': '#006DF0', easing: 'cubic.out'},
-		  strokeWidth:   { 15: 0 },
+		  stroke: 			 {'#006DF0': '#eee', easing: 'cubic.out'},
+		  strokeWidth:   { 10: 0 },
 		  strokeDasharray: '100%',
-		  strokeDashoffset: { '-100%' : '100%' },
-		  duration:      2000,
+		  strokeDashoffset: { '-100%' : '250%' },
+		  duration:      4000,
 		  angle:        { 0: 360 },
 		  easing:        'cubic.out',
 		  repeat: 			1
@@ -21,7 +20,8 @@ const photons = (top, width) => {
 
 	new mojs.Shape({
 		  shape:        'polygon',
-		  scale:         { 0 : .2 },
+      scale:         { 0 : .1 },
+		  points: 			 6,
 		  top: 					 top,
 		  left: 				 width,
 		  fill: 				 {'#006DF0': 'none'},
@@ -29,8 +29,8 @@ const photons = (top, width) => {
 		  strokeWidth:   { 5: 0 },
 		  strokeDasharray: '100%',
 		  strokeDashoffset: { '-100%' : '100%' },
-		  duration:      1500,
-		  angle:        { 450: 0 },
+		  duration:      2500,
+		  angle:        { 180: 0 },
 		  easing:        'cubic.out',
 		  repeat: 			1
 		}).play()
