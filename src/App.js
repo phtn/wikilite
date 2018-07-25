@@ -196,8 +196,8 @@ const Main = observer(
             { style: styles.output },
             appState.userInput !== "" ? appState.desc.length === 10 ? div(
               { style: styles.rankOne },
-              element('p', {style: styles.rankOneTitle}, appState.titles[0]),
-              element('p', {style: styles.rankOneDesc}, appState.desc[0]),
+              element('p', {style: styles.rankOneTitle, className: 'animated fadeInUp'}, appState.titles[0]),
+              element('p', {style: styles.rankOneDesc, className: 'animated fadeInUp'}, appState.desc[0]),
             ) : element(Loader, {top: appState.inputTop, width: appState.width}) : null,
             appState.titles.length !== 0 && appState.userInput !== ""
               ? div(

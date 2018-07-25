@@ -32,7 +32,7 @@ export default props =>
     "div",
     {
       style: Object.assign({}, styles.container, { top: props.height * 0.3 }),
-      className: "animated bounceInUp"
+      className: "animated zoomIn"
     },
     element("img", { src: Salad, height: 100 }),
     element("p", { style: styles.header }, "Ultra lightweight"),
