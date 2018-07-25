@@ -7,6 +7,7 @@ import AppState from "./observables";
 import { observer } from "mobx-react";
 import ReactTooltip from "react-tooltip";
 import Hero from "./components/Hero";
+import Loader from './loader'
 import styles from "./styles";
 import "./App.css";
 import "./animated.css";
@@ -57,6 +58,8 @@ const Main = observer(
       };
     }
     getTitles(title) {
+
+      
 
       if (title) {
         return Object.keys(title).map(index =>
@@ -175,8 +178,10 @@ const Main = observer(
             style: styles.input,
             placeholder: "search",
             onChange: e => {
-              this.getSearch();
               appState.getUserInput(e.target.value);
+              appState.resetAllData(appState.userInput)
+              console.log(appState.titles)
+              this.getSearch();
             },
             autoFocus: true
           }),
@@ -188,11 +193,11 @@ const Main = observer(
             
           div(
             { style: styles.output },
-            appState.userInput !== "" ? div(
+            appState.userInput !== "" ? appState.desc.length === 10 ? div(
               { style: styles.rankOne },
               element('p', {style: styles.rankOneTitle}, appState.titles[0]),
               element('p', {style: styles.rankOneDesc}, appState.desc[0]),
-            ) : null,
+            ) : element(Loader, {height: appState.height, width: appState.width}) : null,
             appState.titles.length !== 0 && appState.userInput !== ""
               ? div(
                   { style: styles.maxResults },

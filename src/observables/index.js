@@ -14,6 +14,13 @@ class AppState {
       titles: [],
       desc: [],
       links: [],
+      resetAllData(input){
+        if(input === ''){
+          this.titles = []
+          this.desc = []
+          this.links = []
+        }
+      },
       getTitles(titles, desc, links) {
         if (titles && this.userInput !== "") {
           this.titles = JSON.parse(titles);
