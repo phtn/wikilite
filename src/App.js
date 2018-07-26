@@ -197,7 +197,7 @@ const Main = observer(
             { style: styles.output },
             appState.userInput !== "" ? appState.desc.length === 10 ? div(
               { style: styles.rankOne },
-              element('img', {style: styles.medal, src: Medal}),
+              appState.desc[0] !== '' ? !appState.desc[0].includes('may refer to') ? element('img', {style: styles.medal, src: Medal, className: 'animated zoomIn'}) : null : null,
               element('p', {style: styles.rankOneTitle, className: 'animated fadeInUp'}, appState.titles[0]),
               element('p', {style: styles.rankOneDesc, className: 'animated fadeInUp'}, appState.desc[0]),
             ) : element(Loader, {top: appState.inputTop, width: appState.width}) : null,

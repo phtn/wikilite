@@ -52,6 +52,6 @@ const photons = (top, width) => {
 
 export default props => (
   <div>
-    {photons(props.top + 15.5, props.width * 0.5)}
+    {photons(props.top + 16, props.width * 0.5)}
   </div>
 )
