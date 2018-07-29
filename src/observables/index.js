@@ -94,9 +94,12 @@ ${link}
           this.logoAnimate = "animated zoomIn";
           this.logo = Copy;
         }, 500);
-
         setTimeout(() => {
-          "animated pulse";
+          this.logoAnimate = "animated zoomOut";
+          this.logo = Copy;
+        }, 1700);
+        setTimeout(() => {
+          this.logoAnimate = "animated zoomIn";
           this.logo = Logo;
         }, 2500);
       }
