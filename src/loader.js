@@ -15,7 +15,6 @@ const photons = (top, width) => {
 		  duration:      2000,
 		  angle:        { 0: 360 },
 		  easing:        'cubic.out',
-		  // repeat: 			1
 		}).play()
 
 	new mojs.Shape({
@@ -32,24 +31,10 @@ const photons = (top, width) => {
 		  duration:      1500,
 		  angle:        { 180: 0 },
 		  easing:        'cubic.out',
-		  repeat: 			1
+			repeat: 			0,
+			delay: 				700
 		}).play()
 }
-
-// const zeroPhotons = () => {
-// 	new mojs.Shape({
-// 		shape: 'circle',
-// 		radius: 0
-// 	})
-// }
-// const loadPhotons = (type) => {
-// 	if (type === 'Office') {
-// 		photons()
-// 	} else {
-// 		zeroPhotons()
-// 	}
-// }
-
 export default props => (
   <div>
     {photons(props.top + 16, props.width * 0.5)}

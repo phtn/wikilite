@@ -11,21 +11,30 @@ class AppState {
       getUserInput(input) {
         this.userInput = input;
       },
+      placeholder: "Search...",
       titles: [],
       desc: [],
       links: [],
-      resetAllData(input){
-        if(input === ''){
-          this.titles = []
-          this.desc = []
-          this.links = []
+      resetAllData(input) {
+        if (input === "") {
+          this.titles = [];
+          this.desc = [];
+          this.links = [];
         }
       },
       getTitles(titles, desc, links) {
-        if (titles && this.userInput !== "") {
-          this.titles = JSON.parse(titles);
-          this.desc = JSON.parse(desc);
-          this.links = JSON.parse(links);
+        if (
+          titles &&
+          this.userInput !== "" &&
+          this.userInput !== "," &&
+          titles.length !== 0
+        ) {
+          let titleArr = JSON.parse(titles);
+          let descArr = JSON.parse(desc);
+          let linksArr = JSON.parse(links);
+          this.titles = titleArr;
+          this.desc = descArr;
+          this.links = linksArr;
         } else if (this.userInput === "") {
           this.titles = [];
         }
@@ -39,8 +48,8 @@ class AppState {
         this.width = width;
       },
       inputTop: 0,
-      setInputTop(top){
-        this.inputTop = top
+      setInputTop(top) {
+        this.inputTop = top;
       },
       copy(title, desc, link) {
         let str = `

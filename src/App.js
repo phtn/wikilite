@@ -3,12 +3,12 @@ import Github from "./assets/github.svg";
 import Twitter from "./assets/twitter.svg";
 import Copy from "./assets/copy.svg";
 import Link from "./assets/link.svg";
-import Medal from './assets/medal_2.svg'
+import Medal from "./assets/medal_2.svg";
 import AppState from "./observables";
 import { observer } from "mobx-react";
 import ReactTooltip from "react-tooltip";
 import Hero from "./components/Hero";
-import Loader from './loader'
+import Loader from "./loader";
 import styles from "./styles";
 import "./App.css";
 import "./animated.css";
@@ -32,7 +32,6 @@ let block1, block2, block3;
 
 const Main = observer(
   class App extends Component {
-
     getSearch() {
       let input = appState.userInput;
       input = input.replace(/\s+/g, "+");
@@ -41,9 +40,9 @@ const Main = observer(
       xhr.open("GET", anywhere + titleUrl, true);
       xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
       xhr.send(null);
-      xhr.onreadystatechange = async function() {
+      xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
-          res = await xhr.responseText;
+          res = xhr.responseText;
           firstComma = res.indexOf(",");
           firstPosition = res.indexOf("],[", 0);
           firstArr = res.substr(0, firstPosition + 1);
@@ -133,10 +132,10 @@ const Main = observer(
         appState.resizeHeight(window.innerHeight);
         appState.resizeWidth(window.innerWidth);
       });
-      let searchInput = document.getElementById('search-input')
-      let rect = searchInput.getBoundingClientRect()
+      let searchInput = document.getElementById("search-input");
+      let rect = searchInput.getBoundingClientRect();
       // console.log(rect)
-      appState.setInputTop(rect.top)
+      appState.setInputTop(rect.top);
     }
     componentWillUnmount() {
       window.removeEventListener("resize", () => {
@@ -145,9 +144,10 @@ const Main = observer(
       });
     }
     render() {
+      // appState.typeWriter(appState.placeholderLength)
       return div(
-        { 
-          className: 'main-div',
+        {
+          className: "main-div",
           style: Object.assign({}, styles.container, {
             height: appState.height,
             marginTop: appState.height * 0.12
@@ -177,38 +177,64 @@ const Main = observer(
           element("input", {
             // INPUT
             style: styles.input,
-            placeholder: "search",
+            placeholder: appState.placeholder,
             onChange: e => {
-              appState.getUserInput(e.target.value);
-              appState.resetAllData(appState.userInput)
-              // console.log(appState.titles)
-              this.getSearch();
+              appState.getUserInput(e.target.value); // GET SEARCH TEXT
+              appState.resetAllData(appState.userInput); // CLEAR MOBX ARRAYS
+              this.getSearch(); // XHR CALL
             },
             autoFocus: true,
-            id: 'search-input'
+            id: "search-input"
           }),
-          
+
           appState.userInput === ""
             ? element(Hero, { height: appState.height })
             : null, // HERO
-            
-            
+
           div(
             { style: styles.output },
-            appState.userInput !== "" ? appState.desc.length === 10 ? div(
-              { style: styles.rankOne },
-              appState.desc[0] !== '' ? !appState.desc[0].includes('may refer to') ? element('img', {style: styles.medal, src: Medal, className: 'animated zoomIn'}) : null : null,
-              element('p', {style: styles.rankOneTitle, className: 'animated fadeInUp'}, appState.titles[0]),
-              element('p', {style: styles.rankOneDesc, className: 'animated fadeInUp'}, appState.desc[0]),
-            ) : element(Loader, {top: appState.inputTop, width: appState.width}) : null,
+            appState.userInput !== ""
+              ? appState.desc.length === 10
+                ? div(
+                    { style: styles.rankOne },
+                    appState.desc[0] !== ""
+                      ? !appState.desc[0].includes("refer to:")
+                        ? element("img", {
+                            style: styles.medal,
+                            src: Medal,
+                            className: "animated zoomIn"
+                          })
+                        : null
+                      : null,
+                    element(
+                      "p",
+                      {
+                        style: styles.rankOneTitle,
+                        className: "animated fadeInUp"
+                      },
+                      appState.titles[0]
+                    ),
+                    element(
+                      "p",
+                      {
+                        style: styles.rankOneDesc,
+                        className: "animated fadeInUp"
+                      },
+                      appState.desc[0]
+                    )
+                  )
+                : element(Loader, {
+                    top: appState.inputTop,
+                    width: appState.width
+                  })
+              : null,
             appState.titles.length !== 0 && appState.userInput !== ""
               ? div(
                   { style: styles.maxResults },
                   `Max results: ${appState.titles.length}`
                 )
               : null,
-            div(null, this.getTitles(appState.titles)), // OUTPUT
-            
+            div(null, this.getTitles(appState.titles)) // OUTPUT
           )
         ),
         div(

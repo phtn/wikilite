@@ -116,29 +116,29 @@ const styles = {
     margin: 5
   },
   rankOne: {
-    height: 'auto',
-    border: '0px solid gray',
+    height: "auto",
+    border: "0px solid gray",
     borderRadius: 3,
-    backgroundColor: '#eee',
+    backgroundColor: "#eee",
     fontFamily: "Montserrat, sans-serif",
     fontWeight: 600,
     fontSize: 11,
     color: "rgba(0,109,240, 0.5)",
-    padding: 5,
+    padding: 5
   },
   rankOneTitle: {
     fontSize: 16
   },
   rankOneDesc: {
     fontWeight: 400,
-    color: '#666'
+    color: "#666"
   },
   medal: {
-    position: 'relative',
+    position: "relative",
     top: 0,
     left: 5,
     height: 30,
-    float: 'right',
+    float: "right"
   }
 };
 export default styles;
