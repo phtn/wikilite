@@ -32,6 +32,7 @@ let block1, block2, block3;
 
 const Main = observer(
   class App extends Component {
+
     getSearch() {
       let input = appState.userInput;
       input = input.replace(/\s+/g, "+");
@@ -145,6 +146,7 @@ const Main = observer(
     }
     render() {
       // appState.typeWriter(appState.placeholderLength)
+      console.log(appState.height)
       return div(
         {
           className: "main-div",
@@ -237,12 +239,15 @@ const Main = observer(
             div(null, this.getTitles(appState.titles)) // OUTPUT
           )
         ),
+
+        
         div(
           {
             // GITHUB
             style: Object.assign({}, styles.github, {
               top: appState.height - 30,
-              WebkitAnimationDelay: "1s"
+              WebkitAnimationDelay: "1s",
+              // backgroundColor: 'black'
             }),
             className: "animated rollIn"
           },

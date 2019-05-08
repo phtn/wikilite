@@ -11,7 +11,7 @@ class AppState {
       getUserInput(input) {
         this.userInput = input;
       },
-      placeholder: "Search...",
+      placeholder: " Search...",
       titles: [],
       desc: [],
       links: [],

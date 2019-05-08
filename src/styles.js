@@ -1,7 +1,8 @@
 const styles = {
   container: {
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    // backgroundColor: 'coral'
   },
   content: {
     textAlign: "center"
@@ -56,6 +57,11 @@ const styles = {
     textTransform: "uppercase",
     letterSpacing: 1,
     marginTop: 5
+  },
+  footer: {
+    border: 'coral',
+    height: '100',
+    width: '100%'
   },
   github: {
     position: "fixed",
